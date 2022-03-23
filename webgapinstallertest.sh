@@ -1,7 +1,6 @@
 #!/bin/sh
-YELLOW=
 
-if [ $UID != 0 ]; then
+if [ $EUID != 0 ] || [ $UID != 0 ]; then
     echo "$(tput setaf 4)This script must be run as root. " 
     exit 1
 fi

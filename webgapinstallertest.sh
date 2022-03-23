@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ $EUID != 0 ] || [ $UID != 0 ]; then
+if ! [ $(id -u) = 0 ]; then
     echo "$(tput setaf 3)This script must be run as root.$(tput setaf 9)" 
     exit 1
 fi

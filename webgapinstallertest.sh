@@ -27,7 +27,7 @@ if [ $osrelease == '"rocky"' ]; then
     echo "$(tput setaf 3)Are you deploying in a virtual private cloud or DMZ (yes/no)?$(tput setaf 9) "
     read answer1
 
-    if [ $answer1 == yes ||  $answer1 == y ]; then
+    if [ $answer1 == yes ] || [ $answer1 == y ]; then
 
         #upgrade operating system
         yum makecache
@@ -89,7 +89,7 @@ if [ $osrelease == '"rocky"' ]; then
         echo -n "$(tput setaf 3)Is your firewall active zone the Trusted zone (yes/no)?$(tput setaf 9) "
         read fw
         
-        if [ "$fw" == "no" || "$fw" == "n" ]; then
+        if [ $fw == no ] || [ $fw == n ]; then
         firewall-cmd --permanent --zone=public --add-service=https; firewall-cmd --permanent --zone=public --add-service=http; firewall-cmd --permanent --zone=public --add-port=8001/tcp; firewall-cmd --permanent --zone=public --add-port=3478/tcp; firewall-cmd --permanent --zone=public --add-port=3478/udp; firewall-cmd --permanent --zone=public --add-rich-rule="rule family=ipv4 source address="$ip" accept"; firewall-cmd --permanent --zone=public --remove-service=cockpit; firewall-cmd --reload
         fi
 
@@ -333,6 +333,7 @@ if [ $osrelease == '"rocky"' ]; then
         sleep 30s
         reboot
     fi
+
 else
 
     echo -n "$(tput setaf 3)Are you deploying in a virtual private cloud or DMZ (yes/no)?$(tput setaf 9) "
@@ -347,7 +348,7 @@ else
     echo -n "$(tput setaf 3)Are you deploying in a virtual private cloud or DMZ (yes/no)?$(tput setaf 9) "
     read answer1
 
-    if [ $answer1 == yes ||  $answer1 == y ]; then
+    if [ $answer1 == yes ] || [  $answer1 == y ]; then
 
         #upgrade operating system
         yum makecache fast

@@ -13,21 +13,21 @@ if [ $osrelease != '"rocky"' ] && [ $osrelease != '"centos"' ]; then
     exit 1
 fi
 
-if [ "$osrelease" == '"rocky"' ]; then
+if [ $osrelease == '"rocky"' ]; then
 
-    echo -e "$(tput setaf 3)Are you deploying in a virtual private cloud or DMZ (yes/no)?$(tput setaf 9) "
+    echo "$(tput setaf 3)Are you deploying in a virtual private cloud or DMZ (yes/no)?$(tput setaf 9) "
     read answer
 
     if [ $answer != yes ] && [ $answer != y ]  && [ $answer != no ] && [ $answer != n ]; then
-        echo -e "$(tput setaf 3)Please answer with yes or no.$(tput setaf 9)"
+        echo "$(tput setaf 3)Please answer with yes or no.$(tput setaf 9)"
     fi
     
     sleep 2
 
-    echo -e "$(tput setaf 3)Are you deploying in a virtual private cloud or DMZ (yes/no)?$(tput setaf 9) "
+    echo "$(tput setaf 3)Are you deploying in a virtual private cloud or DMZ (yes/no)?$(tput setaf 9) "
     read answer1
 
-    if [ "$answer1" == "yes" ||  "$answer1" == "y" ]; then
+    if [ $answer1 == yes ||  $answer1 == y ]; then
 
         #upgrade operating system
         yum makecache
@@ -82,11 +82,11 @@ if [ "$osrelease" == '"rocky"' ]; then
         sed -i 's/AllowZoneDrifting=yes/AllowZoneDrifting=no/' /etc/firewalld/firewalld.conf
 
         #ask for public IP
-        echo -n -e "$(tput setaf 3)What is the IP address assigned to the host network interface?$(tput setaf 9) "
+        echo -n "$(tput setaf 3)What is the IP address assigned to the host network interface?$(tput setaf 9) "
         read ip
 
         #GCP sets the trusted zone active which accepts all packets, no rules needed
-        echo -n -e "$(tput setaf 3)Is your firewall active zone the Trusted zone (yes/no)?$(tput setaf 9) "
+        echo -n "$(tput setaf 3)Is your firewall active zone the Trusted zone (yes/no)?$(tput setaf 9) "
         read fw
         
         if [ "$fw" == "no" || "$fw" == "n" ]; then
@@ -126,9 +126,9 @@ if [ "$osrelease" == '"rocky"' ]; then
         docker run -d -e EXTERNAL_IP=$ip --name=turnserver --restart=always --net=host -p 3478:3478 -p 3478:3478/udp jyangnet/turnserver
 
         #capture user input for the domain and subdomain to be used for front-end and administration respectively
-        echo -n -e "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9) "
+        echo -n "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9) "
         read domain
-        echo -n -e "$(tput setaf 3)Which sudomain would you like to use to access the administration panel?$(tput setaf 9) "
+        echo -n "$(tput setaf 3)Which sudomain would you like to use to access the administration panel?$(tput setaf 9) "
         read subdomain
 
         #replace & with variable values for the domain and subdomain in the nginx conf files
@@ -139,10 +139,10 @@ if [ "$osrelease" == '"rocky"' ]; then
         sed -i '26 i\   \ server_tokens off;' /etc/nginx/nginx.conf
 
         #run certbot twice - once for the front-end domain and once for the administration domain
-        echo -n -e "$(tput setaf 3)Certbot is going to run for the front-end domain. Select number 1 only.$(tput setaf 9)"
+        echo -n "$(tput setaf 3)Certbot is going to run for the front-end domain. Select number 1 only.$(tput setaf 9)"
         sleep 3s
         certbot certonly --nginx --preferred-challenges http
-        echo -n -e "$(tput setaf 3)Certbot is going to run for the administration subdomain. Select number 2 only.$(tput setaf 9)"
+        echo -n "$(tput setaf 3)Certbot is going to run for the administration subdomain. Select number 2 only.$(tput setaf 9)"
         sleep 3s
         certbot certonly --nginx --preferred-challenges http
 
@@ -182,7 +182,7 @@ if [ "$osrelease" == '"rocky"' ]; then
         #cd /opt/deployment; docker-compose -f app.yml up -d
 
         #restart server
-        echo -e "$(tput setaf 3)The server is going to restart in 30 seconds.$(tput setaf 9)"
+        echo "$(tput setaf 3)The server is going to restart in 30 seconds.$(tput setaf 9)"
         sleep 30s
         reboot
     else
@@ -239,7 +239,7 @@ if [ "$osrelease" == '"rocky"' ]; then
         sed -i 's/AllowZoneDrifting=yes/AllowZoneDrifting=no/' /etc/firewalld/firewalld.conf
 
         #ask for public IP to create firewalld rich rules and close database port
-        echo -n -e "$(tput setaf 3)What is the IP address assigned to the host network interface?$(tput setaf 9) "
+        echo -n "$(tput setaf 3)What is the IP address assigned to the host network interface?$(tput setaf 9) "
         read ip
         firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" port port="3306" protocol="tcp" drop'; firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" source address="'$ip'" accept'; firewall-cmd --permanent --zone=public --add-service https; firewall-cmd --permanent --zone=public --add-service http; firewall-cmd --permanent --zone=public --add-port=8001/tcp; firewall-cmd --permanent --zone=public --add-port=3478/tcp; firewall-cmd --permanent --zone=public --add-port=3478/udp; firewall-cmd --permanent --zone=public --remove-service=cockpit; firewall-cmd --reload
     
@@ -270,12 +270,12 @@ if [ "$osrelease" == '"rocky"' ]; then
         cd /opt/deployment; sh install.sh install
 
         #install turnserver container
-        docker run -d -e EXTERNAL_IP=$ip --name=turnserver --restart=always --net=host -p 3478:3478 -p 3478:3478/udp jyangnet/turnserver
+        docker run -d  EXTERNAL_IP=$ip --name=turnserver --restart=always --net=host -p 3478:3478 -p 3478:3478/udp jyangnet/turnserver
 
         #capture user input for the domain and subdomain to be used for front-end and administration respectively
-        echo -n -e "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9) "
+        echo -n "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9) "
         read domain
-        echo -n -e "$(tput setaf 3)Which sudomain would you like to use to access the administration panel?$(tput setaf 9) "
+        echo -n "$(tput setaf 3)Which sudomain would you like to use to access the administration panel?$(tput setaf 9) "
         read subdomain
 
         #replace & with variable values for the domain and subdomain in the nginx conf files
@@ -286,10 +286,10 @@ if [ "$osrelease" == '"rocky"' ]; then
         sed -i '26 i\   \ server_tokens off;' /etc/nginx/nginx.conf
 
         #run certbot twice - once for the front-end domain and once for the administration domain
-        echo -n -e "$(tput setaf 3)Certbot is going to run for the front-end domain. Select number 1 only.$(tput setaf 9)"
+        echo -n "$(tput setaf 3)Certbot is going to run for the front-end domain. Select number 1 only.$(tput setaf 9)"
         sleep 3s
         certbot certonly --nginx --preferred-challenges http
-        echo -n -e "$(tput setaf 3)Certbot is going to run for the administration subdomain. Select number 2 only.$(tput setaf 9)"
+        echo -n "$(tput setaf 3)Certbot is going to run for the administration subdomain. Select number 2 only.$(tput setaf 9)"
         sleep 3s
         certbot certonly --nginx --preferred-challenges http
 
@@ -329,25 +329,25 @@ if [ "$osrelease" == '"rocky"' ]; then
         #cd /opt/deployment; docker-compose -f app.yml up -d
 
         #restart server
-        echo -e "$(tput setaf 3)The server is going to restart in 30 seconds.$(tput setaf 9)"
+        echo "$(tput setaf 3)The server is going to restart in 30 seconds.$(tput setaf 9)"
         sleep 30s
         reboot
     fi
 else
 
-    echo -e "$(tput setaf 3)Are you deploying in a virtual private cloud or DMZ (yes/no)?$(tput setaf 9) "
+    echo -n "$(tput setaf 3)Are you deploying in a virtual private cloud or DMZ (yes/no)?$(tput setaf 9) "
     read answer
     
-    if [ "$answer" -ne "yes" ] && [ "$answer" -ne "y" ]  && [ "$answer" -ne "no" ] && [ "$answer" -ne "n" ]; then
-        echo -e "$(tput setaf 3)Please answer with yes or no.$(tput setaf 9)"
+    if [ $answer != yes ] && [ $answer != y ]  && [ $answer != no ] && [ $answer != n ]; then
+        echo -n "$(tput setaf 3)Please answer with yes or no.$(tput setaf 9)"
     fi
     
     sleep 2
 
-    echo -e "$(tput setaf 3)Are you deploying in a virtual private cloud or DMZ (yes/no)?$(tput setaf 9) "
+    echo -n "$(tput setaf 3)Are you deploying in a virtual private cloud or DMZ (yes/no)?$(tput setaf 9) "
     read answer1
 
-    if [ "$answer1" == "yes" ||  "$answer1" == "y" ]; then
+    if [ $answer1 == yes ||  $answer1 == y ]; then
 
         #upgrade operating system
         yum makecache fast
@@ -402,14 +402,14 @@ else
         sed -i 's/AllowZoneDrifting=yes/AllowZoneDrifting=no/' /etc/firewalld/firewalld.conf
 
         #ask for public IP
-        echo -n -e "$(tput setaf 3)What is the IP address assigned to the host network interface?$(tput setaf 9) "
+        echo -n "$(tput setaf 3)What is the IP address assigned to the host network interface?$(tput setaf 9) "
         read ip
 
         #GCP sets the trusted zone active which accepts all packets, no rules needed
-        echo -n -e "$(tput setaf 3)Is your firewall active zone the Trusted zone (yes/no)?$(tput setaf 9) "
+        echo -n "$(tput setaf 3)Is your firewall active zone the Trusted zone (yes/no)?$(tput setaf 9) "
         read fw
         
-        if [ "$fw" == "no" || "$fw" == "n" ]; then
+        if [ $fw == no || $fw == n ]; then
         firewall-cmd --permanent --zone=public --add-service=https; firewall-cmd --permanent --zone=public --add-service=http; firewall-cmd --permanent --zone=public --add-port=8001/tcp; firewall-cmd --permanent --zone=public --add-port=3478/tcp; firewall-cmd --permanent --zone=public --add-port=3478/udp; firewall-cmd --permanent --zone=public --add-rich-rule="rule family=ipv4 source address="$ip" accept"; firewall-cmd --reload
         fi
 
@@ -446,9 +446,9 @@ else
         docker run -d -e EXTERNAL_IP=$ip --name=turnserver --restart=always --net=host -p 3478:3478 -p 3478:3478/udp jyangnet/turnserver
 
         #capture user input for the domain and subdomain to be used for front-end and administration respectively
-        echo -n -e "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9) "
+        echo -n "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9) "
         read domain
-        echo -n -e "$(tput setaf 3)Which sudomain would you like to use to access the administration panel?$(tput setaf 9) "
+        echo -n "$(tput setaf 3)Which sudomain would you like to use to access the administration panel?$(tput setaf 9) "
         read subdomain
 
         #replace & with variable values for the domain and subdomain in the nginx conf files
@@ -459,10 +459,10 @@ else
         sed -i '26 i\   \ server_tokens off;' /etc/nginx/nginx.conf
 
         #run certbot twice - once for the front-end domain and once for the administration domain
-        echo -n -e "$(tput setaf 3)Certbot is going to run for the front-end domain.$(tput setaf 9)"
+        echo -n "$(tput setaf 3)Certbot is going to run for the front-end domain.$(tput setaf 9)"
         sleep 3s
         certbot certonly --nginx --preferred-challenges http
-        echo -n -e "$(tput setaf 3)Certbot is going to run for the administration subdomain.$(tput setaf 9)"
+        echo -n "$(tput setaf 3)Certbot is going to run for the administration subdomain.$(tput setaf 9)"
         sleep 3s
         certbot certonly --nginx --preferred-challenges http
 
@@ -502,7 +502,7 @@ else
         cd /opt/deployment; docker-compose -f app.yml up -d
 
         #restart server
-        echo -e "$(tput setaf 3)The server is going to restart in 30 seconds.$(tput setaf 9)"
+        echo "$(tput setaf 3)The server is going to restart in 30 seconds.$(tput setaf 9)"
         sleep 30s
         reboot
     else
@@ -559,7 +559,7 @@ else
         sed -i 's/AllowZoneDrifting=yes/AllowZoneDrifting=no/' /etc/firewalld/firewalld.conf
 
         #ask for public IP to create firewalld rich rules and close database port
-        echo -n -e "$(tput setaf 3)What is the IP address assigned to the host network interface?$(tput setaf 9) "
+        echo -n "$(tput setaf 3)What is the IP address assigned to the host network interface?$(tput setaf 9) "
         read ip
         firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" port port="3306" protocol="tcp" drop'; firewall-cmd --permanent --zone=public --add-service https; firewall-cmd --permanent --zone=public --add-service http; firewall-cmd --permanent --zone=public --add-port=8001/tcp; firewall-cmd --permanent --zone=public --add-port=3478/tcp; firewall-cmd --permanent --zone=public --add-port=3478/udp; firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" source address="'$ip'" accept'; firewall-cmd --reload 
 
@@ -596,9 +596,9 @@ else
         docker run -d -e EXTERNAL_IP=$ip --name=turnserver --restart=always --net=host -p 3478:3478 -p 3478:3478/udp jyangnet/turnserver
 
         #capture user input for the domain and subdomain to be used for front-end and administration respectively
-        echo -n -e "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9) "
+        echo -n "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9) "
         read domain
-        echo -n -e "$(tput setaf 3)Which sudomain would you like to use to access the administration panel?$(tput setaf 9) "
+        echo -n "$(tput setaf 3)Which sudomain would you like to use to access the administration panel?$(tput setaf 9) "
         read subdomain
 
         #replace & with variable values for the domain and subdomain in the nginx conf files
@@ -609,10 +609,10 @@ else
         sed -i '26 i\   \ server_tokens off;' /etc/nginx/nginx.conf
 
         #run certbot twice - once for the front-end domain and once for the administration domain
-        echo -n -e "$(tput setaf 3)Certbot is going to run for the front-end domain.$(tput setaf 9)"
+        echo -n "$(tput setaf 3)Certbot is going to run for the front-end domain.$(tput setaf 9)"
         sleep 3s
         certbot certonly --nginx --preferred-challenges http
-        echo -n -e "$(tput setaf 3)Certbot is going to run for the administration subdomain.$(tput setaf 9)"
+        echo -n "$(tput setaf 3)Certbot is going to run for the administration subdomain.$(tput setaf 9)"
         sleep 3s
         certbot certonly --nginx --preferred-challenges http
 
@@ -652,7 +652,7 @@ else
         cd /opt/deployment; docker-compose -f app.yml up -d
 
         #restart server
-        echo -e "$(tput setaf 3)The server is going to restart in 30 seconds.$(tput setaf 9)"
+        echo "$(tput setaf 3)The server is going to restart in 30 seconds.$(tput setaf 9)"
         sleep 30s
         reboot
     fi

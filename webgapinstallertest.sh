@@ -19,7 +19,7 @@ if [[ "$osrelease" == '"rocky"' ]]; then
     read answer
 
     if [[ "$answer" -ne "yes" ]] && [[ "$answer" -ne "y" ]]  && [[ "$answer" -ne "no" ]] && [[ "$answer" -ne "n" ]]; then
-    echo -e "\e[0;33mPlease answer with yes or no.\033[0m"
+        echo -e "\e[0;33mPlease answer with yes or no.\033[0m"
     fi
     
     sleep 2

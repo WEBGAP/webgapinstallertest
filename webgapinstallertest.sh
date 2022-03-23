@@ -8,7 +8,8 @@ fi
 osrelease=$(awk -F= '$1=="ID" { print $2 ;}' /etc/os-release)
 
 if [ $osrelease != '"rocky"' ] && [ $osrelease != '"centos"' ]; then
-    echo "$(tput setaf 3)Please install on CentOS 7 or Rocky 8.$(tput setaf 9)"
+    echo "$(tput setaf 3)Please install on CentOS 7 or Rocky 8. You are trying to install on $(tput bold)$osrelease.$(tput setaf 9)"
+    
     sleep 2
     exit 1
 fi

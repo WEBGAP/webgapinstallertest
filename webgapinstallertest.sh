@@ -1,14 +1,14 @@
 #!/bin/sh
 
 if [ $UID -ne 0 ]; then
-    echo -e "\e[0;33mThis script must be run as root.\033[0m" 
+    echo "$(tput setaf 1)This script must be run as root. " 
     exit 1
 fi
 
 osrelease=$(awk -F= '$1=="ID" { print $2 ;}' /etc/os-release)
 
 if [ $osrelease != rocky ] && [ $osrelease != centos ]; then
-    echo -e "\e[0;33mPlease install on CentOS 7 or Rocky 8.\033[0m"
+    echo "$(tput setaf 1)Please install on CentOS 7 or Rocky 8."
     sleep 2
     exit 1
 fi

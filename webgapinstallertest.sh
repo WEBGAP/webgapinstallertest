@@ -7,7 +7,7 @@ fi
 
 osrelease=$(awk -F= '$1=="ID" { print $2 ;}' /etc/os-release)
 
-if [ $osrelease != "rocky" ] && [ $osrelease != "centos" ]; then
+if [ $osrelease != '"rocky"' ] && [ $osrelease != '"centos"' ]; then
     echo "$(tput setaf 3)Please install on CentOS 7 or Rocky 8.$(tput setaf 9)"
     sleep 2
     exit 1
@@ -15,7 +15,7 @@ fi
 
 if [ "$osrelease" == '"rocky"' ]; then
 
-    echo -e "$(tput setaf 3)re you deploying in a virtual private cloud or DMZ (yes/no)?$(tput setaf 9) "
+    echo -e "$(tput setaf 3)Are you deploying in a virtual private cloud or DMZ (yes/no)?$(tput setaf 9) "
     read answer
 
     if [ $answer != yes ] && [ $answer != y ]  && [ $answer != no ] && [ $answer != n ]; then

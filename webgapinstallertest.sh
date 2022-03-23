@@ -1,24 +1,24 @@
 #!/bin/sh
 
-if [[ $UID -ne 0 ]]; then
+if [ $UID -ne 0 ]; then
     echo -e "\e[0;33mThis script must be run as root.\033[0m" 
     exit 1
 fi
 
 osrelease=$(awk -F= '$1=="ID" { print $2 ;}' /etc/os-release)
 
-if [[ "$osrelease" -ne "rocky" ]] && [[ "$osrelease" -ne "centos" ]]; then
+if [ "$osrelease" -ne "rocky" ] && [ "$osrelease" -ne "centos" ]; then
     echo -e "\e[0;33mPlease install on CentOS 7 or Rocky 8.\033[0m"
     sleep 2
     exit 1
 fi
 
-if [[ "$osrelease" == '"rocky"' ]]; then
+if [ "$osrelease" == '"rocky"' ]; then
 
     echo -e "\e[0;33mAre you deploying in a virtual private cloud or DMZ (yes/no)?\033[0m "
     read answer
 
-    if [[ "$answer" -ne "yes" ]] && [[ "$answer" -ne "y" ]]  && [[ "$answer" -ne "no" ]] && [[ "$answer" -ne "n" ]]; then
+    if [ "$answer" -ne "yes" ] && [ "$answer" -ne "y" ]  && [ "$answer" -ne "no" ] && [ "$answer" -ne "n" ]; then
         echo -e "\e[0;33mPlease answer with yes or no.\033[0m"
     fi
     
@@ -27,7 +27,7 @@ if [[ "$osrelease" == '"rocky"' ]]; then
     echo -e "\e[0;33mAre you deploying in a virtual private cloud or DMZ (yes/no)?\033[0m "
     read answer1
 
-    if [[ "$answer1" == "yes" ||  "$answer1" == "y" ]]; then
+    if [ "$answer1" == "yes" ||  "$answer1" == "y" ]; then
 
         #upgrade operating system
         yum makecache
@@ -89,7 +89,7 @@ if [[ "$osrelease" == '"rocky"' ]]; then
         echo -n -e "\e[0;33mIs your firewall active zone the Trusted zone (yes/no)?\033[0m "
         read fw
         
-        if [[ "$fw" == "no" || "$fw" == "n" ]]; then
+        if [ "$fw" == "no" || "$fw" == "n" ]; then
         firewall-cmd --permanent --zone=public --add-service=https; firewall-cmd --permanent --zone=public --add-service=http; firewall-cmd --permanent --zone=public --add-port=8001/tcp; firewall-cmd --permanent --zone=public --add-port=3478/tcp; firewall-cmd --permanent --zone=public --add-port=3478/udp; firewall-cmd --permanent --zone=public --add-rich-rule="rule family=ipv4 source address="$ip" accept"; firewall-cmd --permanent --zone=public --remove-service=cockpit; firewall-cmd --reload
         fi
 
@@ -338,7 +338,7 @@ else
     echo -e "\e[0;33mAre you deploying in a virtual private cloud or DMZ (yes/no)?\033[0m "
     read answer
     
-    if [[ "$answer" -ne "yes" ]] && [[ "$answer" -ne "y" ]]  && [[ "$answer" -ne "no" ]] && [[ "$answer" -ne "n" ]]; then
+    if [ "$answer" -ne "yes" ] && [ "$answer" -ne "y" ]  && [ "$answer" -ne "no" ] && [ "$answer" -ne "n" ]; then
         echo -e "\e[0;33mPlease answer with yes or no.\033[0m"
     fi
     
@@ -347,7 +347,7 @@ else
     echo -e "\e[0;33mAre you deploying in a virtual private cloud or DMZ (yes/no)?\033[0m "
     read answer1
 
-    if [[ "$answer1" == "yes" ||  "$answer1" == "y" ]]; then
+    if [ "$answer1" == "yes" ||  "$answer1" == "y" ]; then
 
         #upgrade operating system
         yum makecache fast
@@ -409,7 +409,7 @@ else
         echo -n -e "\e[0;33mIs your firewall active zone the Trusted zone (yes/no)?\033[0m "
         read fw
         
-        if [[ "$fw" == "no" || "$fw" == "n" ]]; then
+        if [ "$fw" == "no" || "$fw" == "n" ]; then
         firewall-cmd --permanent --zone=public --add-service=https; firewall-cmd --permanent --zone=public --add-service=http; firewall-cmd --permanent --zone=public --add-port=8001/tcp; firewall-cmd --permanent --zone=public --add-port=3478/tcp; firewall-cmd --permanent --zone=public --add-port=3478/udp; firewall-cmd --permanent --zone=public --add-rich-rule="rule family=ipv4 source address="$ip" accept"; firewall-cmd --reload
         fi
 

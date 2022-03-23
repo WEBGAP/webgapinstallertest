@@ -9,7 +9,7 @@ osrelease=$(awk -F= '$1=="ID" { print $2 ;}' /etc/os-release)
 
 if [ $osrelease != '"rocky"' ] && [ $osrelease != '"centos"' ]; then
     echo "$(tput setaf 3)Please install on CentOS 7 or Rocky 8. You are trying to install on $(tput bold)$osrelease.$(tput setaf 9)"
-    
+
     sleep 2
     exit 1
 fi
@@ -186,7 +186,9 @@ if [ $osrelease == '"rocky"' ]; then
         echo "$(tput setaf 3)The server is going to restart in 30 seconds.$(tput setaf 9)"
         sleep 30s
         reboot
+
     else
+
         #upgrade operating system
         yum makecache
         yum -y upgrade
@@ -507,7 +509,9 @@ else
         echo "$(tput setaf 3)The server is going to restart in 30 seconds.$(tput setaf 9)"
         sleep 30s
         reboot
+
     else
+    
         #upgrade operating system
         yum makecache fast
         yum -y upgrade

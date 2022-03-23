@@ -7,7 +7,7 @@ fi
 
 osrelease=$(awk -F= '$1=="ID" { print $2 ;}' /etc/os-release)
 
-if [[ "$osrelease" -ne "rocky"]] && [[ "$osrelease" -ne "centos" ]]; then
+if [[ "$osrelease" -ne "rocky" ]] && [[ "$osrelease" -ne "centos" ]]; then
     echo -e "\e[0;33mPlease install on CentOS 7 or Rocky 8.\033[0m"
     sleep 2
     exit 1

@@ -27,8 +27,6 @@ if [ $osrelease == '"rocky"' ]; then
         echo "$(tput setaf 3)Are you deploying in a virtual private cloud or DMZ (yes/no)?$(tput setaf 9) "
         read answer1
     fi
-    
-   
 
     if [ $answer1 == yes ] || [ $answer1 == y ]; then
 
@@ -185,8 +183,8 @@ if [ $osrelease == '"rocky"' ]; then
         #cd /opt/deployment; docker-compose -f app.yml up -d
 
         #restart server
-        echo "$(tput setaf 3)The server is going to restart in 30 seconds.$(tput setaf 9)"
-        sleep 30s
+        echo "$(tput setaf 3)The server is going to restart in 10 seconds.$(tput setaf 9)"
+        sleep 10s
         reboot
 
     else
@@ -334,8 +332,8 @@ if [ $osrelease == '"rocky"' ]; then
         #cd /opt/deployment; docker-compose -f app.yml up -d
 
         #restart server
-        echo "$(tput setaf 3)The server is going to restart in 30 seconds.$(tput setaf 9)"
-        sleep 30s
+        echo "$(tput setaf 3)The server is going to restart in 10 seconds.$(tput setaf 9)"
+        sleep 10s
         reboot
     fi
 
@@ -346,12 +344,12 @@ else
     
     if [ $answer != yes ] && [ $answer != y ]  && [ $answer != no ] && [ $answer != n ]; then
         echo "$(tput setaf 3)Please answer with yes or no.$(tput setaf 9)"
-    fi
     
-    sleep 2
+        sleep 2
 
-    echo "$(tput setaf 3)Are you deploying in a virtual private cloud or DMZ (yes/no)?$(tput setaf 9) "
-    read answer1
+        echo "$(tput setaf 3)Are you deploying in a virtual private cloud or DMZ (yes/no)?$(tput setaf 9) "
+        read answer1
+    fi  
 
     if [ $answer1 == yes ] || [  $answer1 == y ]; then
 
@@ -508,8 +506,8 @@ else
         cd /opt/deployment; docker-compose -f app.yml up -d
 
         #restart server
-        echo "$(tput setaf 3)The server is going to restart in 30 seconds.$(tput setaf 9)"
-        sleep 30s
+        echo "$(tput setaf 3)The server is going to restart in 10 seconds.$(tput setaf 9)"
+        sleep 10s
         reboot
 
     else
@@ -660,8 +658,8 @@ else
         cd /opt/deployment; docker-compose -f app.yml up -d
 
         #restart server
-        echo "$(tput setaf 3)The server is going to restart in 30 seconds.$(tput setaf 9)"
-        sleep 30s
+        echo "$(tput setaf 3)The server is going to restart in 10 seconds.$(tput setaf 9)"
+        sleep 10s
         reboot
     fi
 fi

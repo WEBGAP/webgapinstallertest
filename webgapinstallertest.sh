@@ -21,12 +21,14 @@ if [ $osrelease == '"rocky"' ]; then
 
     if [ $answer != yes ] && [ $answer != y ]  && [ $answer != no ] && [ $answer != n ]; then
         echo "$(tput setaf 3)Please answer with yes or no.$(tput setaf 9)"
+        
+        sleep 2
+
+        echo "$(tput setaf 3)Are you deploying in a virtual private cloud or DMZ (yes/no)?$(tput setaf 9) "
+        read answer1
     fi
     
-    sleep 2
-
-    echo "$(tput setaf 3)Are you deploying in a virtual private cloud or DMZ (yes/no)?$(tput setaf 9) "
-    read answer1
+   
 
     if [ $answer1 == yes ] || [ $answer1 == y ]; then
 

@@ -145,7 +145,7 @@ if [ $osrelease == '"rocky"' ]; then
         #install turnserver container
         docker run -d -e EXTERNAL_IP=$ip --name=turnserver --restart=always --net=host -p 3478:3478 -p 3478:3478/udp jyangnet/turnserver
 
-        #capture user input for the domain and subdomain to be used for front-end and administration respectively
+        #capture user input for the domain and subdomain to be used for front-end and administration respectively and prompts for review
         echo "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9)"
         read domain
         read -p -n -r 1 "$(tput setaf 3)Is $domain the correct spelling? (yes/no)$(tput setaf 9)" reply

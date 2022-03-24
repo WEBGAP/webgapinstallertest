@@ -431,7 +431,7 @@ else
         read fw
         fi
         
-        if [ $fw == no || $fw == n ]; then
+        if [ $fw == no ] || [ $fw == n ]; then
         firewall-cmd --permanent --zone=public --add-service=https; firewall-cmd --permanent --zone=public --add-service=http; firewall-cmd --permanent --zone=public --add-port=8001/tcp; firewall-cmd --permanent --zone=public --add-port=3478/tcp; firewall-cmd --permanent --zone=public --add-port=3478/udp; firewall-cmd --permanent --zone=public --add-rich-rule="rule family=ipv4 source address="$ip" accept"; firewall-cmd --reload
         fi
 

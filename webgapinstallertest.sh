@@ -89,6 +89,15 @@ if [ $osrelease == '"rocky"' ]; then
         #GCP sets the trusted zone active which accepts all packets, no rules needed
         echo "$(tput setaf 3)Is your firewall active zone the Trusted zone (yes/no)?$(tput setaf 9) "
         read fw
+
+        if [ $fw != yes ] && [ $fw != y ]  && [ $fw != no ] && [ $fw != n ]; then
+        echo "$(tput setaf 3)Please answer with yes or no.$(tput setaf 9)"
+
+        sleep 2
+
+        echo "$(tput setaf 3)Is your firewall active zone the Trusted zone (yes/no)?$(tput setaf 9) "
+        read fw
+        fi
         
         if [ $fw == no ] || [ $fw == n ]; then
         firewall-cmd --permanent --zone=public --add-service=https; firewall-cmd --permanent --zone=public --add-service=http; firewall-cmd --permanent --zone=public --add-port=8001/tcp; firewall-cmd --permanent --zone=public --add-port=3478/tcp; firewall-cmd --permanent --zone=public --add-port=3478/udp; firewall-cmd --permanent --zone=public --add-rich-rule="rule family=ipv4 source address="$ip" accept"; firewall-cmd --permanent --zone=public --remove-service=cockpit; firewall-cmd --reload
@@ -412,6 +421,15 @@ else
         #GCP sets the trusted zone active which accepts all packets, no rules needed
         echo "$(tput setaf 3)Is your firewall active zone the Trusted zone (yes/no)?$(tput setaf 9) "
         read fw
+
+        if [ $fw != yes ] && [ $fw != y ]  && [ $fw != no ] && [ $fw != n ]; then
+        echo "$(tput setaf 3)Please answer with yes or no.$(tput setaf 9)"
+
+        sleep 2
+
+        echo "$(tput setaf 3)Is your firewall active zone the Trusted zone (yes/no)?$(tput setaf 9) "
+        read fw
+        fi
         
         if [ $fw == no || $fw == n ]; then
         firewall-cmd --permanent --zone=public --add-service=https; firewall-cmd --permanent --zone=public --add-service=http; firewall-cmd --permanent --zone=public --add-port=8001/tcp; firewall-cmd --permanent --zone=public --add-port=3478/tcp; firewall-cmd --permanent --zone=public --add-port=3478/udp; firewall-cmd --permanent --zone=public --add-rich-rule="rule family=ipv4 source address="$ip" accept"; firewall-cmd --reload

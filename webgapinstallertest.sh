@@ -88,7 +88,7 @@ if [ $osrelease == '"rocky"' ]; then
 
         #tests IPv4 address validity
         if ! [[ $ip =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
-            echo "$(tput setaf 3)Please check for IP address formatting and numerical accuracy.$(tput setaf 9)"
+            echo "$(tput setaf 3)Please check for IP address format and numerical accuracy.$(tput setaf 9)"
 
             sleep 5
 
@@ -266,14 +266,14 @@ if [ $osrelease == '"rocky"' ]; then
 
         #tests IPv4 address validity
         if ! [[ $ip =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
-            echo "$(tput setaf 3)Please check for IP address formatting and numerical accuracy.$(tput setaf 9)"
+            echo "$(tput setaf 3)Please check for IP address format and numerical accuracy.$(tput setaf 9)"
 
             sleep 5
 
             echo "$(tput setaf 3)What is the IP address assigned to the host network interface?$(tput setaf 9)"
             read ip
         fi
-        
+
         firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" port port="3306" protocol="tcp" drop'; firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" source address="'$ip'" accept'; firewall-cmd --permanent --zone=public --add-service https; firewall-cmd --permanent --zone=public --add-service http; firewall-cmd --permanent --zone=public --add-port=8001/tcp; firewall-cmd --permanent --zone=public --add-port=3478/tcp; firewall-cmd --permanent --zone=public --add-port=3478/udp; firewall-cmd --permanent --zone=public --remove-service=cockpit; firewall-cmd --reload
     
         #restart snapd service for proper seeding before installation of certbot
@@ -441,7 +441,7 @@ else
 
         #tests IPv4 address validity
         if ! [[ $ip =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
-            echo "$(tput setaf 3)Please check for IP address formatting and numerical accuracy.$(tput setaf 9)"
+            echo "$(tput setaf 3)Please check for IP address format and numerical accuracy.$(tput setaf 9)"
 
             sleep 5
 
@@ -619,7 +619,7 @@ else
 
         #tests IPv4 address validity
         if ! [[ $ip =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
-            echo "$(tput setaf 3)Please check for IP address formatting and numerical accuracy.$(tput setaf 9)"
+            echo "$(tput setaf 3)Please check for IP address format and numerical accuracy.$(tput setaf 9)"
 
             sleep 5
 

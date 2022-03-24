@@ -83,11 +83,21 @@ if [ $osrelease == '"rocky"' ]; then
         sed -i 's/AllowZoneDrifting=yes/AllowZoneDrifting=no/' /etc/firewalld/firewalld.conf
 
         #ask for public IP
-        echo "$(tput setaf 3)What is the IP address assigned to the host network interface?$(tput setaf 9) "
+        echo "$(tput setaf 3)What is the IP address assigned to the host network interface?$(tput setaf 9)"
         read ip
 
+        #tests IPv4 address validity
+        if ! [[ $ip =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+            echo "$(tput setaf 3)Please check for IP address formatting and numerical accuracy.$(tput setaf 9)"
+
+            sleep 5
+
+            echo "$(tput setaf 3)What is the IP address assigned to the host network interface?$(tput setaf 9)"
+            read ip
+        fi
+
         #GCP sets the trusted zone active which accepts all packets, no rules needed
-        echo "$(tput setaf 3)Is your firewall active zone the Trusted zone (yes/no)?$(tput setaf 9) "
+        echo "$(tput setaf 3)Is your firewall active zone the Trusted zone (yes/no)?$(tput setaf 9)"
         read fw
 
         if [ $fw != yes ] && [ $fw != y ]  && [ $fw != no ] && [ $fw != n ]; then
@@ -95,7 +105,7 @@ if [ $osrelease == '"rocky"' ]; then
 
         sleep 2
 
-        echo "$(tput setaf 3)Is your firewall active zone the Trusted zone (yes/no)?$(tput setaf 9) "
+        echo "$(tput setaf 3)Is your firewall active zone the Trusted zone (yes/no)?$(tput setaf 9)"
         read fw
         fi
         
@@ -417,6 +427,16 @@ else
         #ask for public IP
         echo "$(tput setaf 3)What is the IP address assigned to the host network interface?$(tput setaf 9) "
         read ip
+
+        #tests IPv4 address validity
+        if ! [[ $ip =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+            echo "$(tput setaf 3)Please check for IP address formatting and numerical accuracy.$(tput setaf 9)"
+
+            sleep 5
+
+            echo "$(tput setaf 3)What is the IP address assigned to the host network interface?$(tput setaf 9)"
+            read ip
+        fi
 
         #GCP sets the trusted zone active which accepts all packets, no rules needed
         echo "$(tput setaf 3)Is your firewall active zone the Trusted zone (yes/no)?$(tput setaf 9) "

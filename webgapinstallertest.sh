@@ -25,10 +25,10 @@ if [ $osrelease == '"rocky"' ]; then
         sleep 2
 
         echo "$(tput setaf 3)Are you deploying in a virtual private cloud or DMZ (yes/no)?$(tput setaf 9) "
-        read answer1
+        read answer
     fi
 
-    if [ $answer1 == yes ] || [ $answer1 == y ]; then
+    if [ $answer == yes ] || [ $answer == y ]; then
 
         #upgrade operating system
         yum makecache
@@ -348,10 +348,10 @@ else
         sleep 2
 
         echo "$(tput setaf 3)Are you deploying in a virtual private cloud or DMZ (yes/no)?$(tput setaf 9) "
-        read answer1
+        read answer
     fi  
 
-    if [ $answer1 == yes ] || [  $answer1 == y ]; then
+    if [ $answer == yes ] || [  $answer == y ]; then
 
         #upgrade operating system
         yum makecache fast

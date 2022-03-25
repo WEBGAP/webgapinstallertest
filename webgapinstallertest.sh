@@ -148,7 +148,7 @@ if [ $osrelease == '"rocky"' ]; then
         #capture user input for the domain and subdomain to be used for front-end and administration respectively and prompts for review
         echo "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9)"
         read domain
-        echo "$(tput setaf 3)Is $domain the correct spelling(yes/no)?$(tput setaf 9)" 
+        echo "$(tput setaf 3)Is $domain the correct spelling (yes/no)?$(tput setaf 9)" 
         read reply
         if [ $reply == no ] || [ $reply == n ]; then
             echo "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9)"
@@ -159,7 +159,7 @@ if [ $osrelease == '"rocky"' ]; then
 
         echo "$(tput setaf 3)Which sudomain would you like to use to access the administration panel?$(tput setaf 9)"
         read subdomain
-        echo "$(tput setaf 3)Is $subdomain the correct spelling(yes/no)?$(tput setaf 9)"
+        echo "$(tput setaf 3)Is $subdomain the correct spelling (yes/no)?$(tput setaf 9)"
         read reply
         if [ $reply == no ] || [ $reply == n ]; then
             echo "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9)"
@@ -325,7 +325,7 @@ if [ $osrelease == '"rocky"' ]; then
         #capture user input for the domain and subdomain to be used for front-end and administration respectively and prompts for review
         echo "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9)"
         read domain
-        echo "$(tput setaf 3)Is $domain the correct spelling(yes/no)?$(tput setaf 9)" 
+        echo "$(tput setaf 3)Is $domain the correct spelling (yes/no)?$(tput setaf 9)" 
         read reply
         if [ $reply == no ] || [ $reply == n ]; then
             echo "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9)"
@@ -336,7 +336,7 @@ if [ $osrelease == '"rocky"' ]; then
         
         echo "$(tput setaf 3)Which sudomain would you like to use to access the administration panel?$(tput setaf 9)"
         read subdomain
-        echo "$(tput setaf 3)Is $subdomain the correct spelling(yes/no)?$(tput setaf 9)"
+        echo "$(tput setaf 3)Is $subdomain the correct spelling (yes/no)?$(tput setaf 9)"
         read reply
         if [ $reply == no ] || [ $reply == n ]; then
             echo "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9)"
@@ -535,24 +535,22 @@ else
         #capture user input for the domain and subdomain to be used for front-end and administration respectively and prompts for review
         echo "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9)"
         read domain
-        echo "$(tput setaf 3)Is $domain the correct spelling(yes/no)?$(tput setaf 9)" 
+        echo "$(tput setaf 3)Is $domain the correct spelling (yes/no)?$(tput setaf 9)" 
         read reply
         if [ $reply == no ] || [ $reply == n ]; then
             echo "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9)"
             read domain
         else
-            exit 0
         fi
         
         echo "$(tput setaf 3)Which sudomain would you like to use to access the administration panel?$(tput setaf 9)"
         read subdomain
-        echo "$(tput setaf 3)Is $subdomain the correct spelling(yes/no)?$(tput setaf 9)"
+        echo "$(tput setaf 3)Is $subdomain the correct spelling (yes/no)?$(tput setaf 9)"
         read reply
         if [ $reply == no ] || [ $reply == n ]; then
             echo "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9)"
             read subdomain
         else
-            exit 0
         fi
 
         #replace & with variable values for the domain and subdomain in the nginx conf files
@@ -715,7 +713,7 @@ else
         #capture user input for the domain and subdomain to be used for front-end and administration respectively and prompts for review
         echo "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9)"
         read domain
-        echo "$(tput setaf 3)Is $domain the correct spelling(yes/no)?$(tput setaf 9)" 
+        echo "$(tput setaf 3)Is $domain the correct spelling (yes/no)?$(tput setaf 9)" 
         read reply
         if [ $reply == no ] || [ $reply == n ]; then
             echo "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9)"
@@ -726,7 +724,7 @@ else
         
         echo "$(tput setaf 3)Which sudomain would you like to use to access the administration panel?$(tput setaf 9)"
         read subdomain
-        echo "$(tput setaf 3)Is $subdomain the correct spelling(yes/no)?$(tput setaf 9)"
+        echo "$(tput setaf 3)Is $subdomain the correct spelling (yes/no)?$(tput setaf 9)"
         read reply
         if [ $reply == no ] || [ $reply == n ]; then
             echo "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9)"

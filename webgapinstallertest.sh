@@ -540,7 +540,6 @@ else
         if [ $reply == no ] || [ $reply == n ]; then
             echo "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9)"
             read domain
-        else
         fi
         
         echo "$(tput setaf 3)Which sudomain would you like to use to access the administration panel?$(tput setaf 9)"
@@ -550,7 +549,6 @@ else
         if [ $reply == no ] || [ $reply == n ]; then
             echo "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9)"
             read subdomain
-        else
         fi
 
         #replace & with variable values for the domain and subdomain in the nginx conf files

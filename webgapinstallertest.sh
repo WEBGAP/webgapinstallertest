@@ -7,14 +7,14 @@ fi
 
 osrelease=$(awk -F= '$1=="NAME" { print $2 ;}' /etc/os-release)
 
-if [ "$osrelease" != '"Stream 9"' ] && [ "$osrelease" != '"CentOS Linux"' ] && [ "$osrelease" != '"Rocky Linux"' ]; then
+if [ "$osrelease" != '"CentOS Stream"' ] && [ "$osrelease" != '"CentOS Linux"' ] && [ "$osrelease" != '"Rocky Linux"' ]; then
     echo "$(tput setaf 3)Please install on CentOS 7, Rocky 8, or Stream 9. You are trying to install on $(tput bold)$osrelease.$(tput setaf 9)"
 
     sleep 2
     exit 1
 fi
 
-if [ "$osrelease" == '"Rocky Linux"' ] || [ "$osrelease" == '"Stream 9"' ]; then
+if [ "$osrelease" == '"Rocky Linux"' ] || [ "$osrelease" == '"CentOS Stream"' ]; then
 
     echo "$(tput setaf 3)Are you deploying in a virtual private cloud or DMZ (yes/no)?$(tput setaf 9)"
     read answer

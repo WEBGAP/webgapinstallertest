@@ -150,6 +150,16 @@ if [ $osrelease == '"rocky"' ]; then
         read domain
         echo "$(tput setaf 3)Is $domain the correct spelling (yes/no)?$(tput setaf 9)" 
         read reply
+
+        if [ $reply != yes ] && [ $reply != y ]  && [ $reply != no ] && [ $reply != n ]; then
+            echo "$(tput setaf 3)Please answer with yes or no.$(tput setaf 9)"
+        
+            sleep 2
+
+            echo "$(tput setaf 3)Is $domain the correct spelling (yes/no)?$(tput setaf 9)"
+            read reply
+        fi
+
         if [ $reply == no ] || [ $reply == n ]; then
             echo "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9)"
             read domain
@@ -159,8 +169,18 @@ if [ $osrelease == '"rocky"' ]; then
         read subdomain
         echo "$(tput setaf 3)Is $subdomain the correct spelling (yes/no)?$(tput setaf 9)"
         read reply
+
+        if [ $reply != yes ] && [ $reply != y ]  && [ $reply != no ] && [ $reply != n ]; then
+            echo "$(tput setaf 3)Please answer with yes or no.$(tput setaf 9)"
+        
+            sleep 2
+
+            echo "$(tput setaf 3)Is $subdomain the correct spelling (yes/no)?$(tput setaf 9)"
+            read reply
+        fi
+
         if [ $reply == no ] || [ $reply == n ]; then
-            echo "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9)"
+            echo "$(tput setaf 3)Which domain name would you like to use to access the administration panel?$(tput setaf 9)"
             read subdomain
         fi
 
@@ -323,19 +343,40 @@ if [ $osrelease == '"rocky"' ]; then
         read domain
         echo "$(tput setaf 3)Is $domain the correct spelling (yes/no)?$(tput setaf 9)" 
         read reply
+
+        if [ $reply != yes ] && [ $reply != y ]  && [ $reply != no ] && [ $reply != n ]; then
+            echo "$(tput setaf 3)Please answer with yes or no.$(tput setaf 9)"
+        
+            sleep 2
+
+            echo "$(tput setaf 3)Is $domain the correct spelling (yes/no)?$(tput setaf 9)"
+            read reply
+        fi
+
         if [ $reply == no ] || [ $reply == n ]; then
             echo "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9)"
             read domain
         fi
-        
+
         echo "$(tput setaf 3)Which sudomain would you like to use to access the administration panel?$(tput setaf 9)"
         read subdomain
         echo "$(tput setaf 3)Is $subdomain the correct spelling (yes/no)?$(tput setaf 9)"
         read reply
+
+        if [ $reply != yes ] && [ $reply != y ]  && [ $reply != no ] && [ $reply != n ]; then
+            echo "$(tput setaf 3)Please answer with yes or no.$(tput setaf 9)"
+        
+            sleep 2
+
+            echo "$(tput setaf 3)Is $subdomain the correct spelling (yes/no)?$(tput setaf 9)"
+            read reply
+        fi
+
         if [ $reply == no ] || [ $reply == n ]; then
-            echo "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9)"
+            echo "$(tput setaf 3)Which domain name would you like to use to access the administration panel?$(tput setaf 9)"
             read subdomain
         fi
+
 
         #replace & with variable values for the domain and subdomain in the nginx conf files
         sed -i "s/&/$domain/" /etc/nginx/conf.d/default.conf
@@ -529,19 +570,40 @@ else
         read domain
         echo "$(tput setaf 3)Is $domain the correct spelling (yes/no)?$(tput setaf 9)" 
         read reply
+
+        if [ $reply != yes ] && [ $reply != y ]  && [ $reply != no ] && [ $reply != n ]; then
+            echo "$(tput setaf 3)Please answer with yes or no.$(tput setaf 9)"
+        
+            sleep 2
+
+            echo "$(tput setaf 3)Is $domain the correct spelling (yes/no)?$(tput setaf 9)"
+            read reply
+        fi
+
         if [ $reply == no ] || [ $reply == n ]; then
             echo "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9)"
             read domain
         fi
-        
+
         echo "$(tput setaf 3)Which sudomain would you like to use to access the administration panel?$(tput setaf 9)"
         read subdomain
         echo "$(tput setaf 3)Is $subdomain the correct spelling (yes/no)?$(tput setaf 9)"
         read reply
+
+        if [ $reply != yes ] && [ $reply != y ]  && [ $reply != no ] && [ $reply != n ]; then
+            echo "$(tput setaf 3)Please answer with yes or no.$(tput setaf 9)"
+        
+            sleep 2
+
+            echo "$(tput setaf 3)Is $subdomain the correct spelling (yes/no)?$(tput setaf 9)"
+            read reply
+        fi
+
         if [ $reply == no ] || [ $reply == n ]; then
-            echo "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9)"
+            echo "$(tput setaf 3)Which domain name would you like to use to access the administration panel?$(tput setaf 9)"
             read subdomain
         fi
+
 
         #replace & with variable values for the domain and subdomain in the nginx conf files
         sed -i "s/&/$domain/" /etc/nginx/conf.d/default.conf
@@ -705,19 +767,40 @@ else
         read domain
         echo "$(tput setaf 3)Is $domain the correct spelling (yes/no)?$(tput setaf 9)" 
         read reply
+
+        if [ $reply != yes ] && [ $reply != y ]  && [ $reply != no ] && [ $reply != n ]; then
+            echo "$(tput setaf 3)Please answer with yes or no.$(tput setaf 9)"
+        
+            sleep 2
+
+            echo "$(tput setaf 3)Is $domain the correct spelling (yes/no)?$(tput setaf 9)"
+            read reply
+        fi
+
         if [ $reply == no ] || [ $reply == n ]; then
             echo "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9)"
             read domain
         fi
-        
+
         echo "$(tput setaf 3)Which sudomain would you like to use to access the administration panel?$(tput setaf 9)"
         read subdomain
         echo "$(tput setaf 3)Is $subdomain the correct spelling (yes/no)?$(tput setaf 9)"
         read reply
+
+        if [ $reply != yes ] && [ $reply != y ]  && [ $reply != no ] && [ $reply != n ]; then
+            echo "$(tput setaf 3)Please answer with yes or no.$(tput setaf 9)"
+        
+            sleep 2
+
+            echo "$(tput setaf 3)Is $subdomain the correct spelling (yes/no)?$(tput setaf 9)"
+            read reply
+        fi
+
         if [ $reply == no ] || [ $reply == n ]; then
-            echo "$(tput setaf 3)Which domain name would you like to use to access the front-end?$(tput setaf 9)"
+            echo "$(tput setaf 3)Which domain name would you like to use to access the administration panel?$(tput setaf 9)"
             read subdomain
         fi
+
 
         #replace & with variable values for the domain and subdomain in the nginx conf files
         sed -i "s/&/$domain/" /etc/nginx/conf.d/default.conf

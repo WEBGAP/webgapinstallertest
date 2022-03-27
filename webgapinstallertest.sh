@@ -82,7 +82,7 @@ if [ "$osrelease" == '"Rocky Linux"' ]; then
         #disable firewalld zone drifiting
         sed -i 's/AllowZoneDrifting=yes/AllowZoneDrifting=no/' /etc/firewalld/firewalld.conf
 
-        #ask for public IP
+        #ask for host interface IP
         echo "$(tput setaf 3)What is the IP address assigned to the host network interface?$(tput setaf 9)"
         read ip
 
